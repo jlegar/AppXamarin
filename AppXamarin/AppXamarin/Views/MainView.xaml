@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppXamarin.Views.MainView">
+    <ListView
+      x:Name="CitiesView" RowHeight="80" SeparatorColor="Blue">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Orientation="Horizontal">
+              <Image Source="{Binding Image}" Aspect="AspectFill" WidthRequest="100" />
+              <StackLayout Orientation="Vertical">
+                <Label Text ="{Binding Name}" TextColor="Navy" FontSize="Large"/>
+                <Label Text ="{Binding Description}" TextColor="Gray" />
+              </StackLayout>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>
