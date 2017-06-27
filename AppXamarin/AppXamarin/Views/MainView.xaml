@@ -5,9 +5,12 @@
   <StackLayout>
     <Button
       Text="Añadir ciudad"
-      x:Name="botonVistaNuevo" />
+      Command="{Binding CmdNewCity}" />
     <ListView
-      x:Name="CitiesView" RowHeight="80" SeparatorColor="Blue">
+      RowHeight="80"
+      SeparatorColor="Blue"
+      ItemsSource="{Binding Items, Mode=TwoWay}"
+      SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
