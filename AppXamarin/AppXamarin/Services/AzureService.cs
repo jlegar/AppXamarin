@@ -54,7 +54,7 @@ namespace AppXamarin.Services
         {
             try
             {
-                //var result = mobileTableCity.Where(expr => expr.Name.Contains(city.Name)).ToEnumerableAsync();
+                var result = mobileTableCity.Where(expr => expr.Name.Contains(city.Name)).ToEnumerableAsync();
                 
                 if (city.Id != null)
                     mobileTableCity.UpdateAsync(city);
