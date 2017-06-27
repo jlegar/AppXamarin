@@ -6,8 +6,6 @@ namespace AppXamarin.Views
 {
     public partial class MainView : ContentPage
     {
-        //public IEnumerable<City> Cities { get; set; }
-
         public MainView()
         {
             InitializeComponent();
@@ -23,11 +21,16 @@ namespace AppXamarin.Views
                     CitiesView.SelectedItem = null;
                 }
             };
+
+            botonVistaNuevo.Clicked += (sender, e) =>
+            {
+                Navigation.PushAsync(new NewView());
+            };
         }
         
         public async void ViewGetCiudades()
         {
-            AzureService _azureService = new AzureService();
+            AzureService _azureService = AzureService.Instance;
             CitiesView.ItemsSource = await _azureService.GetCities();
         }
         /*

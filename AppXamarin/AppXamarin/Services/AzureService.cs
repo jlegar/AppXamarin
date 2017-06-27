@@ -7,14 +7,31 @@ using System;
 
 namespace AppXamarin.Services
 {
-    class AzureService
+    public class AzureService
     {
         const string AzureEndPoint = "http://xamagramnetbackendjlg.azurewebsites.net";
         MobileServiceClient mobileService;
         IMobileServiceTable<City> mobileTableCity;
+        private static AzureService _instance;
+
+
+        public static AzureService Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new AzureService();
+                }
+                return _instance;
+            }
+        }
 
         public AzureService()
         {
+            if (mobileService != null)
+                return;
+
             mobileService = new MobileServiceClient(AzureEndPoint);
             mobileTableCity = mobileService.GetTable<City>();
         }
@@ -33,11 +50,14 @@ namespace AppXamarin.Services
             }
         }
 
-        public void PutCity(City city)
+        public void InsertUpdateCity(City city)
         {
             try
             {
-                mobileTableCity.InsertAsync(city);
+                if (city.Id != null)
+                    mobileTableCity.UpdateAsync(city);
+                else
+                    mobileTableCity.InsertAsync(city);
             }
             catch (Exception ex)
             {
